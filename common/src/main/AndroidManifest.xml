@@ -16,7 +16,7 @@
         tools:targetApi="lollipop">
         <service
             android:name=".HyperionScreenService"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleTask" />
 
         <receiver

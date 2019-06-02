@@ -80,6 +80,14 @@ public class HyperionScreenEncoder extends HyperionScreenEncoderBase {
         }
     }
 
+    public void pauseVirtualDisplay() {
+        mVirtualDisplay.setSurface(null);
+    }
+
+    public void resumeVirtualDisplay() {
+        mVirtualDisplay.setSurface(mImageReader.getSurface());
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setOrientation(int orientation) {

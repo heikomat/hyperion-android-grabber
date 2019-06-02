@@ -34,6 +34,8 @@ public class HyperionScreenService extends Service {
 
     private static final String BASE = "com.abrenoch.hyperiongrabber.service.";
     public static final String ACTION_START = BASE + "ACTION_START";
+    public static final String ACTION_TOGGLE = BASE + "ACTION_TOGGLE";
+    public static final String ACTION_PAUSE = BASE + "ACTION_PAUSE";
     public static final String ACTION_STOP = BASE + "ACTION_STOP";
     public static final String ACTION_EXIT = BASE + "ACTION_EXIT";
     public static final String GET_STATUS = BASE + "ACTION_STATUS";
@@ -192,6 +194,23 @@ public class HyperionScreenService extends Service {
                     break;
                 case ACTION_STOP:
                     stopScreenRecord();
+                    break;
+                case ACTION_PAUSE:
+                    if (mHyperionEncoder.isCapturing()) {
+                        mHyperionEncoder.setCapturing(false);
+                        mHyperionEncoder.pauseVirtualDisplay();
+                        mHyperionEncoder.clearLights();
+                    }
+                    break;
+                case ACTION_TOGGLE:
+                    if (mHyperionEncoder.isCapturing()) {
+                        mHyperionEncoder.setCapturing(false);
+                        mHyperionEncoder.pauseVirtualDisplay();
+                        mHyperionEncoder.clearLights();
+                    } else {
+                        mHyperionEncoder.resumeRecording();
+                        mHyperionEncoder.resumeVirtualDisplay();
+                    }
                     break;
                 case GET_STATUS:
                     notifyActivity();
